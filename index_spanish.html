@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Predictive Text Generator</title>
+      
+        <style>
+          body {
+            font-family: 'Pixelify Sans', cursive;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(70deg, #0F0F0F, #232D3F, #005B41, #008170);
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          }
+      
+          @keyframes gradientAnimation {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+      
+          h1 {
+            font-family: 'Pixelify Sans', cursive;
+            font-size: 3.3em;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          }
+      
+          .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+          }
+      
+          #search-input {
+            font-family: 'Pixelify Sans', cursive;
+            width: 400px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 24px;
+            outline: none;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+          }
+      
+          #search-button {
+            font-family: 'Pixelify Sans', cursive;
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 24px;
+            outline: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          #search-button:hover {
+            background-color: #0d87f1;
+          }
+          
+          .predicted-word {
+            font-family: 'Pixelify Sans', cursive;
+            font-weight: bold;
+            color: white;
+            font-size: 2em;
+            margin-top: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          }
+          
+          .predicted-word-span {
+            font-size: 1.2em;
+            color: #85E6C5;
+          }
+
+          .language-selection {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-selection h2 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.2em;
+        }
+
+        .language-selection ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .language-selection ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .language-selection a {
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        a {
+        color: #85E6C5;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+        }
+
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&display=swap" rel="stylesheet">
+      </head>
+<body>
+    <h1>Generador de Texto <span class="predicted-word-span">Predictivo</span></h1>
+
+    <form action="/predict" method="post" class="search-container">
+        <input type="text" name="text" id="search-input" placeholder="Ingrese tres palabras...">
+        <input type="hidden" name="language" value="spanish">
+        <input type="submit" value="Predecir" id="search-button">
+    
+        <p class="predicted-word">Palabra predicha: <span class="predicted-word-span">{{ predicted_word }}</span></p>
+    </form>
+
+    <div class="language-selection">
+        <h2>Select Language:</h2>
+        <ul>
+            <li><a href="{{ url_for('index') }}">English</a></li>
+            <li><a href="{{ url_for('german') }}">German</a></li>
+            <li><a href="{{ url_for('spanish') }}">Spanish</a></li>
+        </ul>
+    </div>
+</body>
+</html>
